@@ -12,11 +12,8 @@ const Contact = () => {
     number: Yup.string().matches(/^\d{3}-\d{2}-\d{2}$/, 'Phone number must be in the format 123-45-56').required('Phone number is required'),
   });
 
-  function onFormSubmit(e) {
-    dispatch(addContact({
-      name: e.name,
-      phone: e.number,
-    }));
+  function onFormSubmit(values) {
+    dispatch(addContact(...values));
   }
 
   return (
@@ -41,10 +38,10 @@ const Contact = () => {
           Number
           <Field
             type="text"
-            name="number" />
+            name="phone" />
 
           <ErrorMessage
-            name="number"
+            name="phone"
             component="span"
             className={css.error} />
         </label>

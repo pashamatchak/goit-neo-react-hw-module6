@@ -7,20 +7,19 @@ import { selectNameFilter } from '../../redux/filtersSlice';
 const ContactList = () => {
   const phoneBook = useSelector(selectContacts);
   const filter = useSelector(selectNameFilter);
-
   function visibleContacts() {
     if (!filter.length) {
-      return phoneBook;
+      return Object.values(phoneBook);
     }
 
-    return phoneBook.filter(item =>
+    return Object.values(phoneBook).filter(item =>
       item.name.toLowerCase().includes(filter.toLowerCase()) || item.phone.includes(filter));
   };
 
   return (
     <div className={css.list}>
       {visibleContacts().map(item => (
-        <Contact key={item.id} item={item} />
+        item.id && <Contact key={item.id} item={item} />
       ))}
     </div>
   );

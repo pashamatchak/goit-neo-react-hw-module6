@@ -6,11 +6,15 @@ const Contact = () => {
   const dispatch = useDispatch();
   const filter = useSelector(selectNameFilter);
 
+  function onChange(value) {
+    dispatch(changeFilter(value));
+  }
+
   return (
     <div className={css.search}>
       <label>
         Find contacts by name
-        <input type="text" defaultValue={filter} onChange={e => dispatch(changeFilter(e.target.value))} />
+        <input type="text" defaultValue={filter} onChange={e => onChange(e.target.value)} />
       </label>
     </div>
   );
